@@ -1,0 +1,18 @@
+<?php
+
+namespace app\model;
+
+use support\Model;
+
+class {{modelName}} extends Model
+{
+    protected $connection = 'mysql';
+
+    protected $table = '{{tableNames}}';
+
+    protected $primaryKey = 'id';
+
+    public $timestamps = true;
+
+    protected $guarded = [];
+}
