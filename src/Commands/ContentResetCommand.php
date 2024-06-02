@@ -122,6 +122,11 @@ class ContentResetCommand extends Command
         $stubContent = str_replace('{{name}}', $name, $stubContent);
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
 
+        // app/function.php
+        $stubContent = file_get_contents(self::STUB_PATH . 'app/' . 'functions.stub');
+        $targetFolderPath = base_path() . "/app/functions.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
         // 接下來清空 app/controller、app/model、app/view 底下的所有檔案
         $this->clearFolder(base_path() . '/app/controller');
         $this->clearFolder(base_path() . '/app/model');

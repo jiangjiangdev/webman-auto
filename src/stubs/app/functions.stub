@@ -1,0 +1,55 @@
+<?php
+
+function mix($path)
+{
+    $version = file_get_contents(public_path() . "/version.txt");
+    return $path . "?v=" . $version;
+}
+
+function domain($isProtocol = false, $isPort = false)
+{
+    if (!$isProtocol) {
+        return request()->host(true);
+    }
+
+    return env('APP_PROTOCOL', 'https') . "://" . request()->host($isPort);
+}
+
+function getRealIp()
+{
+    $clientIp = null;
+    if (request()->header('x-forwarded-for') != null) {
+        $clientIp = explode(',', request()->header('x-forwarded-for'))[0];
+    } elseif (request()->header('cf-connecting-ip') != null) {
+        $clientIp = request()->header('cf-connecting-ip');
+    } elseif (request()->header('HTTP_X_FORWARED_FOR') != null) {
+        $clientIp = request()->header('HTTP_X_FORWARED_FOR');
+    } elseif (request()->header('HTTP_CLIENT_IP') != null) {
+        $clientIp = request()->header('HTTP_CLIENT_IP');
+    } else {
+        if (request()->header('REMOTE_ADDR') != null) {
+            $clientIp = request()->header('REMOTE_ADDR');
+        }
+    }
+    return $clientIp;
+}
+
+function can(string $rule)
+{
+    $ruleString = \support\Cache::get('ruleString_' . session('auth_token'));
+    if (empty($ruleString) || !$rule) {
+        return false;
+    }
+    // 是否含有 ,$rule 這個字串
+    $rule = ',' . $rule;
+    return strpos($ruleString, $rule) !== false;
+}
+
+function isUserGroup(string $alias)
+{
+    $userGroupAlias = \support\Cache::get('userGroupAlias_' . session('auth_token'));
+    if (empty($userGroupAlias) || !$alias) {
+        return false;
+    }
+    return $userGroupAlias === $alias;
+}
