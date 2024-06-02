@@ -110,11 +110,22 @@ class ContentResetCommand extends Command
         // 替換名稱
         $stubContent = str_replace('{{name}}', $name, $stubContent);
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
-        
+
         // .gitignore
         $stubContent = file_get_contents(self::STUB_PATH . 'gitignore.stub');
         $targetFolderPath = base_path() . "/.gitignore";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
+        // phinx.php
+        $stubContent = file_get_contents(self::STUB_PATH . 'phinx.stub');
+        $targetFolderPath = base_path() . "/phinx.php";
+        $stubContent = str_replace('{{name}}', $name, $stubContent);
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
+        // 接下來清空 app/controller、app/model、app/view 底下的所有檔案
+        $this->clearFolder(base_path() . '/app/controller');
+        $this->clearFolder(base_path() . '/app/model');
+        $this->clearFolder(base_path() . '/app/view');
 
         return self::SUCCESS;
     }
@@ -148,5 +159,15 @@ class ContentResetCommand extends Command
         }
 
         return true;
+    }
+
+    private function clearFolder(string $folderPath): void
+    {
+        $files = glob($folderPath . '/*');
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
     }
 }
