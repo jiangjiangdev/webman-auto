@@ -79,6 +79,11 @@ class ContentResetCommand extends Command
         $targetFolderPath = base_path() . "/config/redis.php";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
 
+        // route.php
+        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'route.stub');
+        $targetFolderPath = base_path() . "/config/route.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
         // server.php
         $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'server.stub');
         $targetFolderPath = base_path() . "/config/server.php";
