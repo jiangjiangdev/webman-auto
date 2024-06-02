@@ -29,6 +29,16 @@ class ContentResetCommand extends Command
         $targetFolderPath = base_path() . "/config/app.php";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
 
+        // autoload.php
+        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'autoload.stub');
+        $targetFolderPath = base_path() . "/config/autoload.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
+        // bootstrap.php
+        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'bootstrap.stub');
+        $targetFolderPath = base_path() . "/config/bootstrap.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
         // container.php
         $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'container.stub');
         $targetFolderPath = base_path() . "/config/container.php";
@@ -37,6 +47,26 @@ class ContentResetCommand extends Command
         // database.php
         $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'database.stub');
         $targetFolderPath = base_path() . "/config/database.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
+        // dependence.php
+        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'dependence.stub');
+        $targetFolderPath = base_path() . "/config/dependence.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
+        // exception.php
+        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'exception.stub');
+        $targetFolderPath = base_path() . "/config/exception.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
+        // log.php
+        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'log.stub');
+        $targetFolderPath = base_path() . "/config/log.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
+        // middleware.php
+        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'middleware.stub');
+        $targetFolderPath = base_path() . "/config/middleware.php";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
 
         // process.php
@@ -57,6 +87,11 @@ class ContentResetCommand extends Command
         // session.php
         $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'session.stub');
         $targetFolderPath = base_path() . "/config/session.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
+        // static.php
+        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'static.stub');
+        $targetFolderPath = base_path() . "/config/static.php";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
 
         // translation.php
