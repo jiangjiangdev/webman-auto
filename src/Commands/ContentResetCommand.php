@@ -135,7 +135,12 @@ class ContentResetCommand extends Command
         // 接下來清空 app/controller、app/model、app/view 底下的所有檔案
         $this->clearFolder(base_path() . '/app/controller');
         $this->clearFolder(base_path() . '/app/model');
+        $this->clearFolder(base_path() . '/app/middleware');
         $this->clearFolder(base_path() . '/app/view');
+        $this->clearFolder(base_path() . '/app/repository');
+        $this->clearFolder(base_path() . '/db');
+        $this->clearFolder(base_path() . '/public/favicon.ico');
+        $this->clearFolder(base_path() . '/public/version.txt');
 
         return self::SUCCESS;
     }
@@ -173,10 +178,26 @@ class ContentResetCommand extends Command
 
     private function clearFolder(string $folderPath): void
     {
+        // 如果是檔案的話，直接刪除
+        if (is_file($folderPath)) {
+            unlink($folderPath);
+            return;
+        }
         $files = glob($folderPath . '/*');
         foreach ($files as $file) {
             if (is_file($file)) {
                 unlink($file);
+                continue;
+            }
+            // 如果資料夾是空的，則刪除資料夾
+            if (count(glob($folderPath . '/*')) === 0) {
+                rmdir($folderPath);
+                continue;
+            }
+            // 如果是資料夾，則遞迴刪除
+            if (is_dir($file)) {
+                $this->clearFolder($file);
+                rmdir($file);
             }
         }
     }
