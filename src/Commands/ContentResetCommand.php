@@ -132,6 +132,11 @@ class ContentResetCommand extends Command
         $targetFolderPath = base_path() . "/app/functions.php";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
 
+        // vite.config.js
+        $stubContent = file_get_contents(self::STUB_PATH . 'vite.config.stub');
+        $targetFolderPath = base_path() . "/vite.config.js";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
         // 接下來清空 app/controller、app/model、app/view 底下的所有檔案
         $this->clearFolder(base_path() . '/app/controller');
         $this->clearFolder(base_path() . '/app/model');
