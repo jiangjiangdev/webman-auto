@@ -141,6 +141,7 @@ class ContentResetCommand extends Command
         $this->clearFolder(base_path() . '/db');
         $this->clearFolder(base_path() . '/public/favicon.ico');
         $this->clearFolder(base_path() . '/public/version.txt');
+        $this->clearFolder(base_path() . '/README.md');
 
         return self::SUCCESS;
     }
