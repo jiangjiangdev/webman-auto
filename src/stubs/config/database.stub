@@ -6,19 +6,19 @@ return [
     'connections' => [
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_' . strtoupper(env('APP_ENV')) . '_HOST'),
             'port' => env('DB_PORT', 3306),
-            'database' => env('DB_DATABASE', 'name'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_' . strtoupper(env('APP_ENV')) . '_DATABASE'),
+            'username' => env('DB_' . strtoupper(env('APP_ENV')) . '_USERNAME'),
+            'password' => env('DB_' . strtoupper(env('APP_ENV')) . '_PASSWORD'),
             'unix_socket' => '',
-            'charset' => 'utf8mb4',
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => 'utf8mb4_0900_ai_ci',
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-            'sslmode' => env('DB_SSLMODE', null),
-            'options' => env('DB_SSLMODE', null) === 'prefer' ? [
+            'sslmode' => env('DB_' . strtoupper(env('APP_ENV')) . '_SSLMODE'),
+            'options' => env('DB_' . strtoupper(env('APP_ENV')) . '_SSLMODE') == 'prefer' ? [
                 PDO::MYSQL_ATTR_SSL_CA => base_path() . '/dbSSLCA.crt',
             ] : [],
         ],
