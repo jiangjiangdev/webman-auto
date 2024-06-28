@@ -13,6 +13,5 @@
 /public/img*
 .DS_Store
 dbSSLCA.crt
-phinx*
 *.rdb
 *.pem
