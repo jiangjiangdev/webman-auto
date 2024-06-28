@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'default' => 'mysql',
+
+    'connections' => [
+        'mysql' => [
+            'driver' => 'mysql',
+            'host' => env('DB_' . strtoupper(env('APP_ENV')) . '_HOST'),
+            'port' => env('DB_PORT', 3306),
+            'database' => env('DB_' . strtoupper(env('APP_ENV')) . '_DATABASE'),
+            'username' => env('DB_' . strtoupper(env('APP_ENV')) . '_USERNAME'),
+            'password' => env('DB_' . strtoupper(env('APP_ENV')) . '_PASSWORD'),
+            'unix_socket' => '',
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
+            'collation' => 'utf8mb4_0900_ai_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+            'sslmode' => env('DB_' . strtoupper(env('APP_ENV')) . '_SSLMODE'),
+            'options' => env('DB_' . strtoupper(env('APP_ENV')) . '_SSLMODE') == 'prefer' ? [
+                PDO::MYSQL_ATTR_SSL_CA => base_path() . '/dbSSLCA.crt',
+            ] : [],
+        ],
+    ],
+];

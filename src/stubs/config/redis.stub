@@ -1,0 +1,11 @@
+<?php
+
+return [
+    'default' => [
+        'host' => env('REDIS_' . strtoupper(env('APP_ENV')) . '_HOST'),
+        'password' => env('REDIS_' . strtoupper(env('APP_ENV')) . '_PASSWORD'),
+        'port' => env('REDIS_PORT', 6379),
+        'database' => env('REDIS_DATABASE_INDEX', 0),
+        'prefix' => env('REDIS_' . strtoupper(env('APP_ENV')) . '_PREFIX'),
+    ],
+];

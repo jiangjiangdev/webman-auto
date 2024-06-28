@@ -1,0 +1,17 @@
+{
+  "name": "jiangjiangdev/webman-auto",
+  "type": "library",
+  "license": "MIT",
+  "description": "Webman plugin jiangjiangdev/webman-auto",
+  "require": {
+    "php-di/php-di": "^6",
+    "psr/container": "^1.1.1",
+    "doctrine/annotations": "^1.14",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Jiangjiangdev\\WebmanAuto\\": "src"
+    }
+  }
+}

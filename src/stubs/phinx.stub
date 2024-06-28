@@ -1,0 +1,43 @@
+<?php
+
+Dotenv\Dotenv::createImmutable(__DIR__)->safeLoad();
+
+return
+    [
+    'paths' => [
+        'migrations' => '%%PHINX_CONFIG_DIR%%/db/migrations',
+        'seeds' => '%%PHINX_CONFIG_DIR%%/db/seeds',
+    ],
+    'environments' => [
+        'default_migration_table' => 'phinxlog',
+        'default_environment' => $_ENV['APP_ENV'],
+        'production' => [
+            'adapter' => 'mysql',
+            'host' => $_ENV['DB_PRODUCTION_HOST'],
+            'name' => $_ENV['DB_PRODUCTION_DATABASE'],
+            'user' => $_ENV['DB_PRODUCTION_USERNAME'],
+            'pass' => $_ENV['DB_PRODUCTION_PASSWORD'],
+            'port' => '3306',
+            'charset' => 'utf8mb4',
+        ],
+        'development' => [
+            'adapter' => 'mysql',
+            'host' => $_ENV['DB_DEVELOPMENT_HOST'],
+            'name' => $_ENV['DB_DEVELOPMENT_DATABASE'],
+            'user' => $_ENV['DB_DEVELOPMENT_USERNAME'],
+            'pass' => $_ENV['DB_DEVELOPMENT_PASSWORD'],
+            'port' => '3306',
+            'charset' => 'utf8mb4',
+        ],
+        'testing' => [
+            'adapter' => 'mysql',
+            'host' => $_ENV['DB_TESTING_HOST'],
+            'name' => $_ENV['DB_TESTING_DATABASE'],
+            'user' => $_ENV['DB_TESTING_USERNAME'],
+            'pass' => $_ENV['DB_TESTING_PASSWORD'],
+            'port' => '3306',
+            'charset' => 'utf8mb4',
+        ],
+    ],
+    'version_order' => 'creation',
+];
