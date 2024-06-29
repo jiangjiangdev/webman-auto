@@ -25,6 +25,7 @@ class AuthController
         // 先移除 auth_token 在 Cache 中的資料
         $authToken = session('auth_token');
         Cache::delete("userDatas_{$authToken}");
+        session()->forget('auth_token');
 
         return view('page/auth/login');
     }
