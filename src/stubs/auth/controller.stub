@@ -26,9 +26,6 @@ class AuthController
         $authToken = session('auth_token');
         Cache::delete("userDatas_{$authToken}");
 
-        // 遺忘 session
-        session()->flush();
-
         return view('page/auth/login');
     }
 

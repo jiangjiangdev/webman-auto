@@ -1,6 +1,8 @@
 <?php
 namespace app\middleware;
 
+use app\presenter\format\ResponseFormat;
+use support\Cache;
 use Webman\Http\Request;
 use Webman\Http\Response;
 use Webman\MiddlewareInterface;

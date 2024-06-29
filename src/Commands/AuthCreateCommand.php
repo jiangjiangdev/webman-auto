@@ -172,7 +172,7 @@ class AuthCreateCommand extends Command
         // 模板內容
         $stubContent = file_get_contents(self::STUB_PATH . 'loginPage.stub');
         // 創建檔案
-        $targetFolderPath = base_path() . "/app/view/admin/page/$fileName";
+        $targetFolderPath = base_path() . "/app/view/page/auth/$fileName";
         $this->checkAndCreateFile($targetFolderPath, $stubContent);
 
         // 檔名
@@ -180,7 +180,7 @@ class AuthCreateCommand extends Command
         // 模板內容
         $stubContent = file_get_contents(self::STUB_PATH . 'emptyLayout.stub');
         // 創建檔案
-        $targetFolderPath = base_path() . "/app/view/admin/layout/$fileName";
+        $targetFolderPath = base_path() . "/app/view/layout/$fileName";
         $this->checkAndCreateFile($targetFolderPath, $stubContent);
 
         return true;
@@ -191,8 +191,8 @@ class AuthCreateCommand extends Command
     {
         $routeContent = file_get_contents(base_path() . "/config/route.php");
 
-        $routeContent .= "\nRoute::get('/login', [AuthController::class, 'loginPage']);";
-        $routeContent .= "\nRoute::post('/login', [AuthController::class, 'login']);";
+        $routeContent .= "\nRoute::get('/login', [AuthController::class, 'loginPage'])->name('loginPage');";
+        $routeContent .= "\nRoute::post('/login', [AuthController::class, 'login'])->name('login');";
 
         $fileHandle = fopen(base_path() . "/config/route.php", 'w');
         if ($fileHandle) {
