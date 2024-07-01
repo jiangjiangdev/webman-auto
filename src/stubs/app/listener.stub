@@ -1,0 +1,29 @@
+<?php
+
+namespace app\listener;
+
+use Webman\Bootstrap;
+
+class StartListener implements Bootstrap
+{
+    public static function start($worker)
+    {
+        if ($worker && $worker->id === 0 && $worker->name === env('APP_ALIAS', 'server')) {
+            self::checkIsDbExist();
+        }
+    }
+
+    private static function checkIsDbExist()
+    {
+        $host = env('DB_' . strtoupper(env('APP_ENV')) . '_HOST');
+        $username = env('DB_' . strtoupper(env('APP_ENV')) . '_USERNAME');
+        $password = env('DB_' . strtoupper(env('APP_ENV')) . '_PASSWORD');
+        $port = env('DB_PORT', 3306);
+        $newDbName = env('DB_' . strtoupper(env('APP_ENV')) . '_DATABASE');
+        $charset = env('DB_CHARSET', 'utf8mb4');
+
+        $pdo = new \PDO("mysql:host={$host};port={$port}", $username, $password);
+        $sql = "CREATE DATABASE IF NOT EXISTS {$newDbName} CHARACTER SET {$charset} COLLATE utf8mb4_0900_ai_ci";
+        $pdo->exec($sql);
+    }
+}

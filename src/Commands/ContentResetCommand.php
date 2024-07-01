@@ -109,6 +109,11 @@ class ContentResetCommand extends Command
         $targetFolderPath = base_path() . "/config/view.php";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
 
+        // listener/StartListener
+        $stubContent = file_get_contents(self::STUB_PATH . 'app/listener.stub');
+        $targetFolderPath = base_path() . "/app/listener/StartListener.php";
+        $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
+
         // .env
         $stubContent = file_get_contents(self::STUB_PATH . 'env.stub');
         $targetFolderPath = base_path() . "/.env";

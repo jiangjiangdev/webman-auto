@@ -3,4 +3,5 @@
 return [
     support\bootstrap\Session::class,
     support\bootstrap\LaravelDb::class,
+    app\listener\StartListener::class,
 ];
