@@ -8,7 +8,7 @@ class LoginPostValidation extends Validate
 {
     protected $rule = [
         'username' => 'require|max:30',
-        'password' => 'require|max:60|min:6',
+        'password' => 'require|max:60|min:1',
     ];
 
     protected $message = [

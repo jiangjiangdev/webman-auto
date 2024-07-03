@@ -40,6 +40,19 @@ class AuthController
             return redirect(route('loginPage'));
         }
 
+        // 如果資料庫沒有用戶的話, 直接創建一個管理員
+        $user = $this->userRepository->find();
+
+        if (!$user) {
+            $this->userRepository->create([
+                'name' => 'Admin',
+                'username' => $request->input('username'),
+                'password' => password_hash($request->input('password'), PASSWORD_BCRYPT),
+                'user_group' => 9,
+                'auth_token' => 'x',
+            ]);
+        }
+
         // 進行帳號密碼驗證
         $user = $this->authByUsernameAndPassword($request->input('username'), $request->input('password'));
 

@@ -3,22 +3,19 @@
 namespace app\middleware;
 
 use app\presenter\format\ResponseFormat;
-use support\Cache;
 use Webman\Http\Request;
 use Webman\Http\Response;
 use Webman\MiddlewareInterface;
 
-class AuthMiddleware implements MiddlewareInterface
+class IsAdminMiddleware implements MiddlewareInterface
 {
-    public function process(Request $request, callable $handler): Response
+    public function process(Request $request, callable $next): Response
     {
-        $userToken = session('auth_token');
+        $userGroup = $request->user?->user_group ?? null;
 
-        $user = $userToken ? Cache::get("userDatas_{$userToken}") : null;
-
-        if (!$userToken || !$user) {
+        if (!$userGroup || $userGroup < 7) {
             session()->flush();
-            $errorMsg = '驗證過期, 請重新登入';
+            $errorMsg = '權限不足, 請重新登入';
             if ($request->isAjax()) {
                 return ResponseFormat::fail($errorMsg, 401);
             }
@@ -28,9 +25,6 @@ class AuthMiddleware implements MiddlewareInterface
             return redirect(route('loginPage', ['redirect' => $request->path()]));
         }
 
-        $request->user = $user;
-        Cache::set("userDatas_{$userToken}", $user, 3600);
-
-        return $handler($request);
+        return $next($request);
     }
 }
