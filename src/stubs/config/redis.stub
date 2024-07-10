@@ -2,10 +2,10 @@
 
 return [
     'default' => [
-        'host' => env('REDIS_' . strtoupper(env('APP_ENV')) . '_HOST'),
-        'password' => env('REDIS_' . strtoupper(env('APP_ENV')) . '_PASSWORD'),
+        'host' => env('REDIS_HOST', '127.0.0.1'),
+        'password' => env('REDIS_PASSWORD'),
         'port' => env('REDIS_PORT', 6379),
         'database' => env('REDIS_DATABASE_INDEX', 0),
-        'prefix' => env('REDIS_' . strtoupper(env('APP_ENV')) . '_PREFIX'),
+        'prefix' => env('REDIS_PREFIX', 'redis_prefix_'),
     ],
 ];

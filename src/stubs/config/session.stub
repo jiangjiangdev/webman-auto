@@ -13,12 +13,12 @@ return [
             'save_path' => runtime_path() . '/sessions',
         ],
         'redis' => [
-            'host' => env('REDIS_' . strtoupper(env('APP_ENV')) . '_HOST'),
+            'host' => env('REDIS_HOST'),
             'port' => env('REDIS_PORT', 6379),
-            'auth' => env('REDIS_' . strtoupper(env('APP_ENV')) . '_PASSWORD'),
+            'auth' => env('REDIS_PASSWORD'),
             'timeout' => 2,
             'database' => env('SESSION_REDIS_DATABASE_INDEX', 0),
-            'prefix' => env('SESSION_' . strtoupper(env('APP_ENV')) . '_REDIS_PREFIX'),
+            'prefix' => env('SESSION_REDIS_PREFIX', 'redis_session_'),
         ],
         'redis_cluster' => [
             'host' => ['127.0.0.1:7000', '127.0.0.1:7001', '127.0.0.1:7001'],
