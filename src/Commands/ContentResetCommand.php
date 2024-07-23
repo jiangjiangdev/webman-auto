@@ -23,6 +23,20 @@ class ContentResetCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $name = $input->getArgument('name');
+
+        // 接下來清空 app/controller、app/model、app/view 底下的所有檔案
+        $this->clearFolder(base_path() . '/app/controller');
+        $this->clearFolder(base_path() . '/app/model');
+        $this->clearFolder(base_path() . '/app/middleware');
+        $this->clearFolder(base_path() . '/app/view');
+        $this->clearFolder(base_path() . '/app/repository');
+        $this->clearFolder(base_path() . '/app/validation');
+        $this->clearFolder(base_path() . '/app/listener');
+        $this->clearFolder(base_path() . '/db');
+        $this->clearFolder(base_path() . '/public/favicon.ico');
+        $this->clearFolder(base_path() . '/public/version.txt');
+        $this->clearFolder(base_path() . '/README.md');
+        
         // Reset config
         // app.php
         $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'app.stub');
@@ -146,19 +160,6 @@ class ContentResetCommand extends Command
         $stubContent = file_get_contents(self::STUB_PATH . 'public/404.stub');
         $targetFolderPath = base_path() . "/public/404.html";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
-
-        // 接下來清空 app/controller、app/model、app/view 底下的所有檔案
-        $this->clearFolder(base_path() . '/app/controller');
-        $this->clearFolder(base_path() . '/app/model');
-        $this->clearFolder(base_path() . '/app/middleware');
-        $this->clearFolder(base_path() . '/app/view');
-        $this->clearFolder(base_path() . '/app/repository');
-        $this->clearFolder(base_path() . '/app/validation');
-        $this->clearFolder(base_path() . '/app/listener');
-        $this->clearFolder(base_path() . '/db');
-        $this->clearFolder(base_path() . '/public/favicon.ico');
-        $this->clearFolder(base_path() . '/public/version.txt');
-        $this->clearFolder(base_path() . '/README.md');
 
         return self::SUCCESS;
     }
