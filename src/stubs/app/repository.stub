@@ -14,8 +14,11 @@ class {{modelName}}Repository
             $query->with($withs);
         }
         foreach ($conditions as $field => $value) {
+            // 檢查是否值是一個範圍（即數組），並且特別處理
             if (is_array($value)) {
-                $query->where($field, ...$value);
+                for ($i = 0; $i < count($value); $i++) {
+                    $query->where($field, ...$value[$i]);
+                }
             } else {
                 $query->where($field, $value);
             }
@@ -39,8 +42,11 @@ class {{modelName}}Repository
         }
         $query->where('deleted_at', null);
         foreach ($conditions as $field => $value) {
+            // 檢查是否值是一個範圍（即數組），並且特別處理
             if (is_array($value)) {
-                $query->where($field, ...$value);
+                for ($i = 0; $i < count($value); $i++) {
+                    $query->where($field, ...$value[$i]);
+                }
             } else {
                 $query->where($field, $value);
             }
@@ -58,8 +64,11 @@ class {{modelName}}Repository
     {
         $query = {{modelName}}::query();
         foreach ($conditions as $field => $value) {
+            // 檢查是否值是一個範圍（即數組），並且特別處理
             if (is_array($value)) {
-                $query->where($field, ...$value);
+                for ($i = 0; $i < count($value); $i++) {
+                    $query->where($field, ...$value[$i]);
+                }
             } else {
                 $query->where($field, $value);
             }

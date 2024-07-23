@@ -153,6 +153,8 @@ class ContentResetCommand extends Command
         $this->clearFolder(base_path() . '/app/middleware');
         $this->clearFolder(base_path() . '/app/view');
         $this->clearFolder(base_path() . '/app/repository');
+        $this->clearFolder(base_path() . '/app/validation');
+        $this->clearFolder(base_path() . '/app/listener');
         $this->clearFolder(base_path() . '/db');
         $this->clearFolder(base_path() . '/public/favicon.ico');
         $this->clearFolder(base_path() . '/public/version.txt');

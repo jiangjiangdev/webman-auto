@@ -15,11 +15,11 @@ class StartListener implements Bootstrap
 
     private static function checkIsDbExist()
     {
-        $host = env('DB_' . strtoupper(env('APP_ENV')) . '_HOST');
-        $username = env('DB_' . strtoupper(env('APP_ENV')) . '_USERNAME');
-        $password = env('DB_' . strtoupper(env('APP_ENV')) . '_PASSWORD');
+        $host = env('DB_HOST');
+        $username = env('DB_USERNAME');
+        $password = env('DB_PASSWORD');
         $port = env('DB_PORT', 3306);
-        $newDbName = env('DB_' . strtoupper(env('APP_ENV')) . '_DATABASE');
+        $newDbName = env('DB_DATABASE');
         $charset = env('DB_CHARSET', 'utf8mb4');
 
         $pdo = new \PDO("mysql:host={$host};port={$port}", $username, $password);
