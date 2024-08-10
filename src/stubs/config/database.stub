@@ -17,8 +17,8 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-            'sslmode' => env('DB_' . strtoupper(env('APP_ENV')) . '_SSLMODE'),
-            'options' => env('DB_' . strtoupper(env('APP_ENV')) . '_SSLMODE') == 'prefer' ? [
+            'sslmode' => env('DB_SSLMODE'),
+            'options' => env('DB_SSLMODE') == 'prefer' ? [
                 PDO::MYSQL_ATTR_SSL_CA => base_path() . '/dbSSLCA.crt',
             ] : [],
         ],
