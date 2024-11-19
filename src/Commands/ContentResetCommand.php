@@ -98,9 +98,9 @@ class ContentResetCommand extends Command
         $targetFolderPath = base_path() . "/config/route.php";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
 
-        // server.php
-        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'server.stub');
-        $targetFolderPath = base_path() . "/config/server.php";
+        // cache.php
+        $stubContent = file_get_contents(self::CONFIG_STUB_PATH . 'cache.stub');
+        $targetFolderPath = base_path() . "/config/cache.php";
         $this->checkAndCreateFile($targetFolderPath, $stubContent, true);
 
         // session.php
